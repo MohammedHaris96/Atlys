@@ -1,13 +1,22 @@
-import "./index.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { PostsProvider } from "./context/PostsContext";
+import { FeedPage } from "./pages/FeedPage";
+import { SignInPage } from "./pages/SignInPage";
+import { SignUpPage } from "./pages/SignUpPage";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-      <h1 className="text-3xl font-bold">
-        React + Vite + TypeScript + Tailwind 🚀
-      </h1>
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <PostsProvider>
+          <Routes>
+            <Route path="/" element={<FeedPage />} />
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+          </Routes>
+        </PostsProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;

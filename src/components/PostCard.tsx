@@ -1,5 +1,5 @@
 import type { Post } from "../types";
-import { HeartIcon, CommentIcon, ShareIcon } from "./Icons";
+import { CommentIcon, HeartIcon, ShareIcon } from "./Icons";
 
 interface PostCardProps {
   post: Post;
@@ -20,56 +20,63 @@ function formatTimeAgo(date: Date): string {
   const diffDays = Math.floor(diffHours / 24);
   return `${diffDays} days ago`;
 }
-
 export function PostCard({ post, onInteraction }: PostCardProps) {
   const handleAction = () => {
     onInteraction();
   };
 
   return (
-    <article className="bg-white rounded-2xl border border-gray-200 p-5 animate-slide-up">
-      <div className="flex items-start gap-3 mb-3">
-        <img
-          src={post.author.avatar}
-          alt={post.author.name}
-          className="w-10 h-10 rounded-full"
-        />
-        <div>
-          <h3 className="font-semibold text-gray-900 text-sm">
-            {post.author.name}
-          </h3>
-          <p className="text-xs text-gray-400">
-            {formatTimeAgo(post.createdAt)}
+    <article className="animate-slide-up rounded-3xl bg-gray-200 p-4 shadow-sm">
+      <div className="rounded-2xl border border-gray-200 bg-white p-5">
+        <div className="mb-4 flex items-start gap-3">
+          <img
+            src={post.author.avatar}
+            alt={post.author.name}
+            className="h-10 w-10 rounded-full bg-gray-300 object-cover transition-transform duration-300 ease-out hover:scale-110"
+          />
+
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900">
+              {post.author.name}
+            </h3>
+            <p className="text-xs text-gray-400">
+              {formatTimeAgo(post.createdAt)}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-5">
+          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 p-4">
+            {post.emoji}
+          </div>
+
+          <p className="text-sm leading-relaxed text-gray-700">
+            {post.content}
           </p>
         </div>
       </div>
 
-      <div className="flex gap-2 mb-3">
-        <span className="text-xl">{post.emoji}</span>
-        <p className="text-sm text-gray-700 leading-relaxed">{post.content}</p>
-      </div>
-
-      <div className="flex items-center gap-1 pt-2 border-t border-gray-100">
+      <div className="mt-4 flex items-center gap-3 px-2">
         <button
           onClick={handleAction}
-          className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all duration-200"
+          className="animate-pulse rounded-lg p-2 text-gray-500 transition-colors hover:bg-red-300"
           aria-label="Like"
         >
-          <HeartIcon className="w-5 h-5" />
+          <HeartIcon className="h-5 w-5" />
         </button>
         <button
           onClick={handleAction}
-          className="p-2 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-blue-50 transition-all duration-200"
+          className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-red-300"
           aria-label="Comment"
         >
-          <CommentIcon className="w-5 h-5" />
+          <CommentIcon className="h-5 w-5" />
         </button>
         <button
           onClick={handleAction}
-          className="p-2 rounded-lg text-gray-400 hover:text-green-500 hover:bg-green-50 transition-all duration-200"
           aria-label="Share"
+          className="rounded-lg p-2 text-gray-500 transition-transform duration-500 ease-in-out hover:rotate-45"
         >
-          <ShareIcon className="w-5 h-5" />
+          <ShareIcon className="h-5 w-5" />
         </button>
       </div>
     </article>

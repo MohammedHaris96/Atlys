@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { LogoIcon, LoginIcon } from "./Icons";
+import { LogoIcon, AuthIcon } from "./Icons";
 import { useAuth } from "../context/AuthContext";
 
 interface HeaderProps {
@@ -10,20 +10,20 @@ export function Header({ showBackToHome = false }: HeaderProps) {
   const { isAuthenticated, user, signOut } = useAuth();
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white border-b border-gray-100 z-40">
-      <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+    <header className="fixed left-0 right-0 top-0 z-40 border-b border-gray-100 bg-white">
+      <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-4">
         <Link
           to="/"
-          className="flex items-center gap-2 text-gray-900 hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2 text-gray-900 transition-opacity hover:opacity-80"
         >
-          <LogoIcon className="w-8 h-8" />
-          <span className="font-semibold text-lg">Atlys</span>
+          <LogoIcon className="h-8 w-8" />
+          <span className="text-lg font-semibold">Atlys</span>
         </Link>
 
         {showBackToHome ? (
           <Link
             to="/"
-            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-sm text-gray-600 transition-colors hover:text-gray-900"
           >
             Back to home
           </Link>
@@ -33,25 +33,22 @@ export function Header({ showBackToHome = false }: HeaderProps) {
               <img
                 src={user?.avatar}
                 alt={user?.name}
-                className="w-8 h-8 rounded-full"
+                className="h-8 w-8 rounded-full"
               />
               <span className="text-sm font-medium text-gray-700">
                 {user?.name}
               </span>
             </div>
-            <button
-              onClick={signOut}
-              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-            >
-              Logout
+            <button onClick={signOut} className="group">
+              <AuthIcon className="h-4 w-4 text-gray-500 transition-transform duration-500 ease-in-out group-hover:rotate-180" />
             </button>
           </div>
         ) : (
           <Link
             to="/signin"
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            className="flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-900"
           >
-            Login <LoginIcon className="w-4 h-4" />
+            Login <AuthIcon className="h-4 w-4" />
           </Link>
         )}
       </div>

@@ -40,7 +40,7 @@ export function FeedPage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <main className="max-w-2xl mx-auto px-4 pt-24 pb-12">
+      <main className="mx-auto max-w-2xl px-4 pb-12 pt-24">
         <div className="space-y-6">
           <PostEditor onRequireAuth={handleRequireAuth} />
 
@@ -64,7 +64,7 @@ export function FeedPage() {
         <div className="px-8 pb-6 text-center">
           <button
             onClick={toggleAuthMode}
-            className="text-sm text-primary font-medium hover:underline"
+            className="text-sm font-medium text-primary hover:underline"
           >
             {authMode === "signin"
               ? "Need an account? Sign Up"

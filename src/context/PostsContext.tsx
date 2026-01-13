@@ -64,7 +64,7 @@ export function PostsProvider({ children }: { children: React.ReactNode }) {
       };
       setPosts((prev) => [newPost, ...prev]);
     },
-    []
+    [],
   );
 
   return (

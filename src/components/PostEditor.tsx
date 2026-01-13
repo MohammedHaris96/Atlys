@@ -87,63 +87,69 @@ export function PostEditor({ onRequireAuth }: PostEditorProps) {
   ];
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
-      <div className="flex items-center gap-1 p-3 border-b border-gray-100">
-        <button
-          onClick={handleToolbarAction}
-          className="flex items-center gap-1 px-3 py-1.5 text-sm text-gray-600 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-        >
-          Paragraph
-          <ChevronDownIcon className="w-4 h-4" />
-        </button>
-
-        <div className="w-px h-6 bg-gray-200 mx-1" />
-
-        {toolbarButtons.map(({ icon: Icon, label }) => (
+    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
+      <div className="flex items-center gap-1 border-b border-gray-100 p-3">
+        <div className="flex items-center gap-1 rounded-lg bg-gray-100 px-2 py-1">
           <button
-            key={label}
             onClick={handleToolbarAction}
-            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-            aria-label={label}
+            className="flex items-center gap-1 rounded-lg bg-white px-3 py-1.5 text-sm text-gray-600 transition-colors"
           >
-            <Icon className="w-4 h-4" />
+            Paragraph
+            <ChevronDownIcon className="h-4 w-4" />
           </button>
-        ))}
 
-        <div className="w-px h-6 bg-gray-200 mx-1" />
+          <div className="mx-1 h-6 w-px bg-gray-200" />
 
-        {listButtons.map(({ icon: Icon, label }) => (
-          <button
-            key={label}
-            onClick={handleToolbarAction}
-            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-            aria-label={label}
-          >
-            <Icon className="w-4 h-4" />
-          </button>
-        ))}
+          {toolbarButtons.map(({ icon: Icon, label }, index) => (
+            <button
+              key={label}
+              onClick={handleToolbarAction}
+              aria-label={label}
+              className={`rounded-lg p-2 transition-colors ${
+                index === 0
+                  ? "border border-gray-200 bg-white text-gray-700"
+                  : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+              } `}
+            >
+              <Icon className="h-4 w-4" />
+            </button>
+          ))}
 
-        <div className="w-px h-6 bg-gray-200 mx-1" />
+          <div className="mx-1 h-6 w-px bg-gray-200" />
 
-        {formatButtons.map(({ icon: Icon, label }) => (
-          <button
-            key={label}
-            onClick={handleToolbarAction}
-            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-            aria-label={label}
-          >
-            <Icon className="w-4 h-4" />
-          </button>
-        ))}
+          {listButtons.map(({ icon: Icon, label }) => (
+            <button
+              key={label}
+              onClick={handleToolbarAction}
+              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
+              aria-label={label}
+            >
+              <Icon className="h-4 w-4" />
+            </button>
+          ))}
+
+          <div className="mx-1 h-6 w-px bg-gray-200" />
+
+          {formatButtons.map(({ icon: Icon, label }) => (
+            <button
+              key={label}
+              onClick={handleToolbarAction}
+              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
+              aria-label={label}
+            >
+              <Icon className="h-4 w-4" />
+            </button>
+          ))}
+        </div>
 
         <div className="flex-1" />
 
         <button
           onClick={handleToolbarAction}
-          className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+          className="rounded-lg bg-red-50 p-2 text-red-400 transition-colors hover:bg-red-200 hover:text-red-600"
           aria-label="Delete"
         >
-          <TrashIcon className="w-4 h-4" />
+          <TrashIcon className="h-4 w-4" />
         </button>
       </div>
 
@@ -158,13 +164,13 @@ export function PostEditor({ onRequireAuth }: PostEditorProps) {
                 }
                 setShowEmojiPicker(!showEmojiPicker);
               }}
-              className="p-1 hover:bg-gray-100 rounded transition-colors"
+              className="rounded p-1 transition-colors hover:bg-gray-100"
             >
-              <EmojiIcon className="w-5 h-5 text-gray-400" />
+              <EmojiIcon className="h-5 w-5 text-gray-400" />
             </button>
 
             {showEmojiPicker && (
-              <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-gray-200 p-2 flex gap-1 z-10 animate-scale-in">
+              <div className="absolute left-0 top-full z-10 mt-1 flex animate-scale-in gap-1 rounded-lg border border-gray-200 bg-white p-2 shadow-lg">
                 {EMOJIS.map((emoji) => (
                   <button
                     key={emoji}
@@ -172,7 +178,7 @@ export function PostEditor({ onRequireAuth }: PostEditorProps) {
                       setSelectedEmoji(emoji);
                       setShowEmojiPicker(false);
                     }}
-                    className="p-1 hover:bg-gray-100 rounded text-xl transition-colors"
+                    className="rounded p-1 text-xl transition-colors hover:bg-gray-100"
                   >
                     {emoji}
                   </button>
@@ -186,32 +192,32 @@ export function PostEditor({ onRequireAuth }: PostEditorProps) {
             onChange={(e) => setContent(e.target.value)}
             onFocus={handleInputFocus}
             placeholder="How are you feeling today?"
-            className="flex-1 resize-none text-sm text-gray-700 placeholder:text-gray-400 min-h-[60px] focus:outline-none"
+            className="min-h-[60px] flex-1 resize-none text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none"
             rows={2}
           />
         </div>
       </div>
 
-      <div className="flex items-center justify-between p-3 border-t border-gray-100">
+      <div className="flex items-center justify-between border-t border-gray-100 p-3">
         <div className="flex items-center gap-1">
           {attachmentButtons.map(({ icon: Icon, label }) => (
             <button
               key={label}
               onClick={handleToolbarAction}
-              className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+              className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
               aria-label={label}
             >
-              <Icon className="w-4 h-4" />
+              <Icon className="h-4 w-4" />
             </button>
           ))}
         </div>
 
         <button
           onClick={handlePublish}
-          className="p-2.5 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors active:scale-95"
+          className="rounded-lg p-2.5 text-white"
           aria-label="Publish"
         >
-          <SendIcon className="w-5 h-5" />
+          <SendIcon className="h-5 w-5 bg-white" />
         </button>
       </div>
     </div>

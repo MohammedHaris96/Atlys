@@ -6,8 +6,8 @@ export function SignInPage() {
     <div className="min-h-screen bg-gray-50">
       <Header showBackToHome />
 
-      <main className="flex items-center justify-center min-h-screen px-4">
-        <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-100 animate-scale-in">
+      <main className="flex min-h-screen items-center justify-center px-4">
+        <div className="relative w-full max-w-lg animate-scale-in rounded-3xl bg-gray-200 p-5 shadow-xl">
           <AuthForm mode="signin" />
         </div>
       </main>

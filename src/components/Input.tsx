@@ -9,20 +9,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-sm font-medium text-gray-900 mb-2">
+          <label className="mb-2 block text-sm font-medium text-gray-900">
             {label}
           </label>
         )}
         <input
           ref={ref}
-          className={`w-full px-4 py-3 border border-gray-200 rounded-xl text-sm
-            placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary
-            transition-colors duration-200 ${className}`}
+          className={`w-full rounded-xl border border-gray-200 px-4 py-3 text-sm transition-colors duration-200 placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary ${className}`}
           {...props}
         />
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "nput";

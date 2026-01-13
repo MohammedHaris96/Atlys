@@ -1,9 +1,10 @@
 import { useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthIcon } from "./Icons";
+// import { AuthIcon } from "./Icons";
 import { useAuth } from "../context/AuthContext";
 import { Input } from "./Input";
 import { Button } from "./Button";
+import { AuthIcon } from "./Icons";
 
 interface AuthFormProps {
   mode: "signin" | "signup";
@@ -68,15 +69,15 @@ export function AuthForm({ mode, onSuccess, isModal = false }: AuthFormProps) {
   };
 
   return (
-    <div className="p-8">
-      <div className="flex flex-col items-center mb-8">
-        <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-          <AuthIcon className="w-6 h-6 text-gray-700" />
+    <div className="rounded-3xl bg-white p-8">
+      <div className="mb-8 flex flex-col items-center">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+          <AuthIcon className="h-6 w-6 text-gray-700" />
         </div>
         <h2 className="text-xl font-bold text-gray-900">
           {isSignIn ? "Sign in to continue" : "Create an account to continue"}
         </h2>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="mt-1 text-sm text-gray-500">
           {isSignIn
             ? "Sign in to access all the features on this app"
             : "Create an account to access all the features on this app"}
@@ -111,7 +112,7 @@ export function AuthForm({ mode, onSuccess, isModal = false }: AuthFormProps) {
         )}
 
         {error && (
-          <p className="text-sm text-red-500 animate-fade-in">{error}</p>
+          <p className="animate-fade-in text-sm text-red-500">{error}</p>
         )}
 
         <Button type="submit" className="w-full" disabled={loading}>
@@ -119,7 +120,7 @@ export function AuthForm({ mode, onSuccess, isModal = false }: AuthFormProps) {
         </Button>
       </form>
 
-      <p className="text-sm text-center text-gray-500 mt-6">
+      <p className="mt-6 text-center text-sm text-gray-500">
         {isSignIn ? "Do not have an account? " : "Already have an account? "}
         {isModal ? (
           <button
@@ -130,14 +131,14 @@ export function AuthForm({ mode, onSuccess, isModal = false }: AuthFormProps) {
               setConfirmPassword("");
               setError("");
             }}
-            className="text-primary font-medium hover:underline"
+            className="font-medium text-primary hover:underline"
           >
             {isSignIn ? "Sign Up" : "Sign In"}
           </button>
         ) : (
           <Link
             to={isSignIn ? "/signup" : "/signin"}
-            className="text-primary font-medium hover:underline"
+            className="font-medium text-primary hover:underline"
           >
             {isSignIn ? "Sign Up" : "Sign In"}
           </Link>

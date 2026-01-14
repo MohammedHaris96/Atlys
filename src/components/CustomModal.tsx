@@ -18,8 +18,12 @@ export function CustomModal({ isOpen, onClose, children, footer }: ModalProps) {
         className="absolute inset-0 animate-fade-in bg-black/50"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-lg animate-scale-in rounded-3xl bg-gray-200 p-5 shadow-xl">
-        <div className="rounded-3xl bg-white p-8">{children}</div>
+      {/* <div className="relative w-full max-w-lg animate-scale-in rounded-3xl bg-gray-200 px-2 pb-8 pt-2 shadow-xl">
+        <div className="rounded-3xl bg-white p-4">{children}</div>
+        {footer && <div className="pt-4 text-center">{footer}</div>}
+      </div> */}
+      <div className="relative w-full max-w-lg animate-scale-in rounded-3xl bg-gray-200 p-2 shadow-xl">
+        <div className="rounded-3xl bg-white">{children}</div>
         {footer && <div className="pt-4 text-center">{footer}</div>}
       </div>
     </div>

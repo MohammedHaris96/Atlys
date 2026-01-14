@@ -26,7 +26,7 @@ export function PostCard({ post, onInteraction }: PostCardProps) {
   };
 
   return (
-    <article className="animate-slide-up rounded-3xl bg-gray-200 p-4 shadow-sm">
+    <div className="animate-slide-up rounded-3xl bg-gray-200 p-2 shadow-sm">
       <div className="rounded-2xl border border-gray-200 bg-white p-5">
         <div className="mb-4 flex items-start gap-3">
           <img
@@ -79,6 +79,6 @@ export function PostCard({ post, onInteraction }: PostCardProps) {
           <ShareIcon className="h-5 w-5" />
         </button>
       </div>
-    </article>
+    </div>
   );
 }

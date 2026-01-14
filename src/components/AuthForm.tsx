@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { AuthIcon } from "./Icons";
 import { useAuth } from "../context/AuthContext";
@@ -67,60 +67,62 @@ export function AuthForm({ mode, onSuccess, isModal = false }: AuthFormProps) {
       setLoading(false);
     }
   };
-
+  console.log(isModal, "isModal");
   return (
-    <div className="rounded-3xl bg-white p-8">
-      <div className="mb-8 flex flex-col items-center">
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
-          <AuthIcon className="h-6 w-6 text-gray-700" />
+    <Fragment>
+      <div className={isModal ? "p-12" : "rounded-3xl bg-white p-12 shadow-sm"}>
+        <div className="mb-8 flex flex-col items-center">
+          <div className="mb-4 flex items-center justify-center rounded-full bg-gray-100">
+            <AuthIcon className="h-6 w-6 text-gray-700" />
+          </div>
+          <h2 className="text-xl font-bold text-gray-900">
+            {isSignIn ? "Sign in to continue" : "Create an account to continue"}
+          </h2>
+          <p className="mb-5 mt-1 text-sm text-gray-500">
+            {isSignIn
+              ? "Sign in to access all the features on this app"
+              : "Create an account to access all the features on this app"}
+          </p>
         </div>
-        <h2 className="text-xl font-bold text-gray-900">
-          {isSignIn ? "Sign in to continue" : "Create an account to continue"}
-        </h2>
-        <p className="mt-1 text-sm text-gray-500">
-          {isSignIn
-            ? "Sign in to access all the features on this app"
-            : "Create an account to access all the features on this app"}
-        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input
+            label="Email or username"
+            type="email"
+            placeholder="Enter your email or username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <Input
+            label="Password"
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          {!isSignIn && (
+            <Input
+              label="Repeat password"
+              type="password"
+              placeholder="Enter your password again"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          )}
+
+          {error && (
+            <p className="animate-fade-in text-sm text-red-500">{error}</p>
+          )}
+
+          <Button type="submit" className="w-full" disabled={loading}>
+            {loading ? "Please wait..." : isSignIn ? "Sign In" : "Sign Up"}
+          </Button>
+        </form>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <Input
-          label="Email or username"
-          type="email"
-          placeholder="Enter your email or username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <Input
-          label="Password"
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        {!isSignIn && (
-          <Input
-            label="Repeat password"
-            type="password"
-            placeholder="Enter your password again"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        )}
-
-        {error && (
-          <p className="animate-fade-in text-sm text-red-500">{error}</p>
-        )}
-
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? "Please wait..." : isSignIn ? "Sign In" : "Sign Up"}
-        </Button>
-      </form>
-
-      <p className="mt-6 text-center text-sm text-gray-500">
+      <div className="my-4 text-center text-sm text-gray-500">
         {isSignIn ? "Do not have an account? " : "Already have an account? "}
         {isModal ? (
           <button
@@ -143,7 +145,7 @@ export function AuthForm({ mode, onSuccess, isModal = false }: AuthFormProps) {
             {isSignIn ? "Sign Up" : "Sign In"}
           </Link>
         )}
-      </p>
-    </div>
+      </div>
+    </Fragment>
   );
 }

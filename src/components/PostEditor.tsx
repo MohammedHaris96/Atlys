@@ -199,7 +199,7 @@ export function PostEditor({ onRequireAuth }: PostEditorProps) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between border-t border-gray-100 p-2">
+        <div className="flex items-center justify-between border-t border-gray-300 p-2">
           <div className="flex items-center gap-1">
             {attachmentButtons.map(({ icon: Icon, label }, index) => (
               <button

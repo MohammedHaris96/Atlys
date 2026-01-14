@@ -11,7 +11,7 @@ export function Header({ showBackToHome = false }: HeaderProps) {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 border-b border-gray-100 bg-white">
-      <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-4">
+      <div className="mx-auto flex h-16 items-center justify-between px-4">
         <Link
           to="/"
           className="flex items-center gap-2 text-gray-900 transition-opacity hover:opacity-80"

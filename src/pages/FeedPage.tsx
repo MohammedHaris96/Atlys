@@ -40,7 +40,7 @@ export function FeedPage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <main className="mx-auto max-w-2xl px-4 pb-12 pt-24">
+      <div className="mx-auto max-w-2xl px-4 pb-12 pt-24">
         <div className="space-y-6">
           <PostEditor onRequireAuth={handleRequireAuth} />
 
@@ -54,23 +54,28 @@ export function FeedPage() {
             ))}
           </div>
         </div>
-      </main>
+      </div>
 
       <CustomModal
         isOpen={showAuthModal}
         onClose={() => setShowAuthModal(false)}
+        footer={
+          <div className="mb-2 flex justify-center text-sm text-gray-500">
+            <p className="mr-1">
+              {authMode === "signin"
+                ? "Need an account?"
+                : "Already have an account?"}
+            </p>
+            <button
+              onClick={toggleAuthMode}
+              className="font-medium text-primary hover:underline"
+            >
+              {authMode === "signin" ? "Sign Up" : "Sign In"}
+            </button>
+          </div>
+        }
       >
         <AuthForm mode={authMode} onSuccess={handleAuthSuccess} isModal />
-        <div className="px-8 pb-6 text-center">
-          <button
-            onClick={toggleAuthMode}
-            className="text-sm font-medium text-primary hover:underline"
-          >
-            {authMode === "signin"
-              ? "Need an account? Sign Up"
-              : "Have an account? Sign In"}
-          </button>
-        </div>
       </CustomModal>
     </div>
   );

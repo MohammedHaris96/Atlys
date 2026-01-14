@@ -72,7 +72,7 @@ export function AuthForm({ mode, onSuccess, isModal = false }: AuthFormProps) {
     <Fragment>
       <div className={isModal ? "p-12" : "rounded-3xl bg-white p-12 shadow-sm"}>
         <div className="mb-8 flex flex-col items-center">
-          <div className="mb-4 flex items-center justify-center rounded-full bg-gray-100">
+          <div className="mb-4 flex items-center justify-center rounded-full bg-gray-100 p-2">
             <AuthIcon className="h-6 w-6 text-gray-700" />
           </div>
           <h2 className="text-xl font-bold text-gray-900">
@@ -122,30 +122,17 @@ export function AuthForm({ mode, onSuccess, isModal = false }: AuthFormProps) {
         </form>
       </div>
 
-      <div className="my-4 text-center text-sm text-gray-500">
-        {isSignIn ? "Do not have an account? " : "Already have an account? "}
-        {isModal ? (
-          <button
-            type="button"
-            onClick={() => {
-              setEmail("");
-              setPassword("");
-              setConfirmPassword("");
-              setError("");
-            }}
-            className="font-medium text-primary hover:underline"
-          >
-            {isSignIn ? "Sign Up" : "Sign In"}
-          </button>
-        ) : (
+      {!isModal && (
+        <div className="my-4 text-center text-sm text-gray-500">
+          {isSignIn ? "Do not have an account? " : "Already have an account? "}
           <Link
             to={isSignIn ? "/signup" : "/signin"}
             className="font-medium text-primary hover:underline"
           >
             {isSignIn ? "Sign Up" : "Sign In"}
           </Link>
-        )}
-      </div>
+        </div>
+      )}
     </Fragment>
   );
 }

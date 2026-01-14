@@ -89,8 +89,8 @@ export function PostEditor({ onRequireAuth }: PostEditorProps) {
   return (
     <div className="animate-slide-up rounded-3xl bg-gray-200 p-2 shadow-sm">
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-        <div className="flex items-center gap-1 border-b border-gray-100 p-2">
-          <div className="flex items-center gap-1 rounded-lg bg-gray-100 p-1">
+        <div className="flex items-center gap-1 overflow-x-auto border-b border-gray-100 p-2">
+          <div className="flex shrink-0 items-center gap-1 rounded-lg bg-gray-100 p-1">
             <button
               onClick={handleToolbarAction}
               className="flex items-center gap-1 rounded-lg bg-white px-3 py-1.5 text-sm text-gray-600 transition-colors"

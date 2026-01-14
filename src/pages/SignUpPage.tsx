@@ -7,9 +7,8 @@ export function SignUpPage() {
       <Header showBackToHome />
 
       <main className="flex min-h-screen items-center justify-center px-4">
-        <div className="w-full max-w-md animate-scale-in rounded-2xl border border-gray-100 bg-white shadow-sm">
+        <div className="relative w-full max-w-lg animate-scale-in rounded-3xl bg-gray-200 p-2 shadow-xl">
           <AuthForm mode="signup" />
-          <div className="a b c" />
         </div>
       </main>
     </div>

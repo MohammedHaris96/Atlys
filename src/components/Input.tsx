@@ -15,7 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <input
           ref={ref}
-          className={`w-full rounded-xl border border-gray-200 px-4 py-3 text-sm transition-colors duration-200 placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary ${className}`}
+          className={`w-full rounded-xl bg-gray-100 px-4 py-3 text-sm transition-colors duration-200 placeholder:text-gray-400 focus:border-primary focus:ring-1 focus:ring-primary ${className}`}
           {...props}
         />
       </div>
@@ -23,4 +23,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   },
 );
 
-Input.displayName = "nput";
+Input.displayName = "Input";
